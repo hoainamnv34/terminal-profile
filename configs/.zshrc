@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -98,36 +98,50 @@ source $ZSH/oh-my-zsh.sh
 
 # Định nghĩa các mã màu cho terminal
 COLORS=(
-  "%F{red}"     # Màu đỏ
-  "%F{green}"   # Màu xanh lá
-  "%F{yellow}"  # Màu vàng
-  "%F{blue}"    # Màu xanh dương
-  "%F{magenta}" # Màu tím
-  "%F{cyan}"    # Màu xanh lơ
+  "%F{#7a99de}"   # Màu xanh dương nhạt
+  "%F{#f9d342}"   # Màu vàng đậm
+  "%F{#bd4428}"   # Màu đỏ đất
+  "%F{#f52549}"   # Màu đỏ tươi
+  "%F{#9bc01c}"   # Màu xanh lá nhạt
+  "%F{#f7efe2}"   # Màu kem nhạt
 )
-
-# Chọn màu ngẫu nhiên từ mảng COLORS
-RANDOM_COLOR=${COLORS[$RANDOM % ${#COLORS[@]}]}
-
-# Đặt prompt với màu ngẫu nhiên
-#PROMPT="${RANDOM_COLOR}%n@%m:%~%f%# "
-
 
 # Định nghĩa các mã màu nền toàn bộ terminal (mã điều khiển ANSI)
-BACKGROUND_COLORS=(
-  "\033]11;#35454A\007"  # Xanh dương nhạt
-  "\033]11;#2c452C\007"  # Xanh lá nhạt
-  "\033]11;#787349\007"  # Vàng nhạt
-  "\033]11;#735757\007"  # Xám nhạt
-  "\033]11;#45457a\007"  # Tím lavender
-  "\033]11;#7a4750\007"  # Hồng nhạt
-  "\033]11;#396e6e\007"  # Xanh lơ nhạt
-)
+# BACKGROUND_COLORS=(
+#   "\033]11;#292826\007"  # Màu đỏ nhạt
+#   "\033]11;#292826\007"  # Màu xám đậm .
+#   "\033]11;#292826\007"  # Màu hồng nhạt
+#   "\033]11;#292826\007"  # Màu xanh đậm v
+#   "\033]11;#292826\007"  # Màu xanh đậm v
+#   "\033]11;#292826\007"  # Màu xanh xám tối
+#   "\033]11;#292826\007"  # Màu xanh xám tối
+# )
 
-# Chọn màu nền ngẫu nhiên từ mảng BACKGROUND_COLORS
-RANDOM_BG=${BACKGROUND_COLORS[$RANDOM % ${#BACKGROUND_COLORS[@]}]}
+# Lưu trữ chỉ mục hiện tại trong tệp để duy trì trạng thái giữa các phiên
+INDEX_FILE="$HOME/.zsh_color_index"
+
+# Đọc chỉ mục từ tệp, nếu không tồn tại thì bắt đầu từ 0
+if [ -f "$INDEX_FILE" ]; then
+  index=$(cat "$INDEX_FILE")
+else
+  index=1
+fi
+
+# Lấy màu prompt và màu nền từ chỉ mục hiện tại
+RANDOM_COLOR=${COLORS[$index+1]}
+# RANDOM_BG=${BACKGROUND_COLORS[$index]}
+
+# Đặt màu riêng cho đường dẫn (path)
+PATH_COLOR="%F{yellow}" # Màu vàng cố định cho đường dẫn
+
+# Đặt prompt với màu theo thứ tự cho tên người dùng và màu cố định cho đường dẫn
+PROMPT="${RANDOM_COLOR}%n@%m:${PATH_COLOR}%~%f%# "
 
 # Áp dụng màu nền
-print -n "$RANDOM_BG"
+# print -n "$RANDOM_BG"
 
+# Tăng chỉ mục và đặt lại về 0 nếu vượt quá số lượng màu
+index=$(( (index + 1) % ${#COLORS[@]} ))
 
+# Lưu chỉ mục hiện tại vào tệp để sử dụng cho lần sau
+echo $index > "$INDEX_FILE"
