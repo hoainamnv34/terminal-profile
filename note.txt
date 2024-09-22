@@ -1,0 +1,16 @@
+COLORS=(
+  "%F{#fce77d}"   # Màu vàng nhạt 
+  "%F{#f9d342}"   # Màu vàng đậm .
+  "%F{#2f3c7e}"   # Màu xanh đậm
+  "%F{#fad744}"   # Màu xanh ngọc nhạt v
+  "%F{#f4a950}"   # Màu cam nhạt
+)
+
+# Định nghĩa các mã màu nền toàn bộ terminal (mã điều khiển ANSI)
+BACKGROUND_COLORS=(
+  "\033]11;#f96167\007"  # Màu đỏ nhạt
+  "\033]11;#292826\007"  # Màu xám đậm .
+  "\033]11;#fbeaeb\007"  # Màu hồng nhạt
+  "\033]11;#243665\007"  # Màu xanh đậm v
+  "\033]11;#161b21\007"  # Màu xanh xám tối
+)

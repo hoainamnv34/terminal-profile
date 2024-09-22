@@ -96,26 +96,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Định nghĩa các mã màu cho terminal
 COLORS=(
-  "%F{#7a99de}"   # Màu xanh dương nhạt
-  "%F{#f9d342}"   # Màu vàng đậm
-  "%F{#bd4428}"   # Màu đỏ đất
-  "%F{#f52549}"   # Màu đỏ tươi
-  "%F{#9bc01c}"   # Màu xanh lá nhạt
-  "%F{#f7efe2}"   # Màu kem nhạt
+  "%F{#7A99DE}"   # Màu xanh dương nhạt
+  "%F{#F9D342}"   # Màu vàng đậm
+  "%F{#BD4428}"   # Màu đỏ đất
+  "%F{#F7EFE2}"   # Màu đỏ tươi
 )
 
 # Định nghĩa các mã màu nền toàn bộ terminal (mã điều khiển ANSI)
-# BACKGROUND_COLORS=(
-#   "\033]11;#292826\007"  # Màu đỏ nhạt
-#   "\033]11;#292826\007"  # Màu xám đậm .
-#   "\033]11;#292826\007"  # Màu hồng nhạt
-#   "\033]11;#292826\007"  # Màu xanh đậm v
-#   "\033]11;#292826\007"  # Màu xanh đậm v
-#   "\033]11;#292826\007"  # Màu xanh xám tối
-#   "\033]11;#292826\007"  # Màu xanh xám tối
-# )
+BACKGROUND_COLORS=(
+  "\033]11;#0C1C25\007"  # Màu đỏ nhạt
+  "\033]11;#292826\007"  # Màu xám đậm .
+  "\033]11;#646460\007"  # Màu hồng nhạt
+  "\033]11;#300A24\007"  # Màu xanh đậm v
+)
 
 # Lưu trữ chỉ mục hiện tại trong tệp để duy trì trạng thái giữa các phiên
 INDEX_FILE="$HOME/.zsh_color_index"
@@ -124,12 +118,13 @@ INDEX_FILE="$HOME/.zsh_color_index"
 if [ -f "$INDEX_FILE" ]; then
   index=$(cat "$INDEX_FILE")
 else
-  index=1
+  index=0
 fi
-
+# index=0
 # Lấy màu prompt và màu nền từ chỉ mục hiện tại
 RANDOM_COLOR=${COLORS[$index+1]}
-# RANDOM_BG=${BACKGROUND_COLORS[$index]}
+RANDOM_BG=${BACKGROUND_COLORS[$index+1]}
+
 
 # Đặt màu riêng cho đường dẫn (path)
 PATH_COLOR="%F{yellow}" # Màu vàng cố định cho đường dẫn
