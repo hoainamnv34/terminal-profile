@@ -133,7 +133,7 @@ PATH_COLOR="%F{yellow}" # Màu vàng cố định cho đường dẫn
 PROMPT="${RANDOM_COLOR}%n@%m:${PATH_COLOR}%~%f%# "
 
 # Áp dụng màu nền
-# print -n "$RANDOM_BG"
+print -n "$RANDOM_BG"
 
 # Tăng chỉ mục và đặt lại về 0 nếu vượt quá số lượng màu
 index=$(( (index + 1) % ${#COLORS[@]} ))
